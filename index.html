@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Team Fight Tactics</title>
+        <meta charset="UTF-8">
+        <link href="https://fonts.googleapis.com/css?family=Suez+One&display=swap" rel="stylesheet">
+    </head>
+
+    <body>
+        
+        <style>
+            html {
+                box-sizing: border-box;
+                font-family: 'Suez One', serif;
+                background:burlywood;
+                font-size: 20px;
+                font-weight: 200;
+            }
+
+            body {
+                margin: 0;
+            }
+
+            *, *::before, *:after {
+                box-sizing: inherit;
+            }
+
+            .startbgd {
+                background: rgba(255, 255, 255, 0.5);
+            }
+
+            .panels {
+                min-height: 100vh;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .panel {
+                background: black;
+                box-shadow: inset 0 0 0 5px rgba(255, 255, 255, 0.1);
+                color: white;
+                text-align: center;
+                align-items: center;
+                transition: 
+                    font-size 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11),
+                    flex 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11),
+                    background 0.2s;
+                font-size: 20px;
+                background-size: cover;
+                background-position: top;
+                flex: 1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .panel1 { 
+                background-image: url(https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Lulu_0.jpg);
+                background-position: center;}
+            .panel2 { background-image: url(https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ashe_0.jpg);}
+            .panel3 { background-image: url(https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Leona_0.jpg);}
+            .panel4 { background-image: url(https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_0.jpg);}
+            .panel5 { 
+                background-image: url(https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Warwick_0.jpg);
+                background-position: center;}
+
+            /* Flex Children */
+            .panel > * {
+                margin: 0;
+                width: 100%;
+                transition: transform 0.2s;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .panel > :first-child {transform: translateX(-100%);}
+            .panel.open-active > :first-child {transform: translateX(0);}
+            .panel > :last-child {transform: translateX(100%);}
+            .panel.open-active > :last-child {transform: translateX(0);}
+
+            .panel p {
+                text-transform: uppercase;
+                text-shadow: 0 0 4px rgba(0, 0, 0, 0.72), 0 0 14px rgba(0, 0, 0, 0.45);
+                font-size: 1em; 
+            }
+
+            .panel p:nth-child(2) {
+                font-size: 3em;
+            }
+
+            .panel.open {
+                flex: 10;
+                font-size: 40px;
+
+            }
+
+        </style>
+        <div class="startbgd">
+        <div class="panels">
+            <div class="panel panel1">
+                <p>Team</p>
+                <p>Yordle</p>
+                <p>Dodge</p>
+            </div>
+            <div class="panel panel2">
+                <p>Team</p>
+                <p>Glacier</p>
+                <p>Freeze</p>
+            </div>
+            <div class="panel panel3">
+                <p>Team</p>
+                <p>Noble</p>
+                <p>Defence</p>
+            </div>
+            <div class="panel panel4">
+                <p>Team</p>
+                <p>Demon</p>
+                <p>Mana</p>
+            </div>
+            <div class="panel panel5">
+                <p>Team</p>
+                <p>Wild</p>
+                <p>Fury</p>
+            </div>
+         </div>
+         </div>
+         
+         <script>
+             const background = document
+             const panels = document.querySelectorAll('.panel');
+
+             function toggleOpen() {
+                 this.classList.toggle('open')
+             }
+
+             function toggleActive(e) {
+                 if(e.propertyName.includes('flex')) {
+                 this.classList.toggle('open-active')
+             }}
+
+             panels.forEach(panel => panel.addEventListener('click', toggleOpen));
+             panels.forEach(panel => panel.addEventListener('transitionend', toggleActive));
+         </script>
+    </body>
+</html>
